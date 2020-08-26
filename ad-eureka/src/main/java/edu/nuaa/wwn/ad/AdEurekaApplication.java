@@ -1,6 +1,5 @@
-package edu.nuaa.wwn.eureka;
+package edu.nuaa.wwn.ad;
 
-import com.netflix.discovery.DiscoveryClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;

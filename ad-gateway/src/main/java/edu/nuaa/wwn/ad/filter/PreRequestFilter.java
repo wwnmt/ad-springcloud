@@ -1,4 +1,4 @@
-package edu.nuaa.wwn.zuul.filter;
+package edu.nuaa.wwn.ad.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
