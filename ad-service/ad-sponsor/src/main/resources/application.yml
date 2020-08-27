@@ -1,17 +1,10 @@
 server:
   port: 7000
   servlet:
-    context-path: /ad-sponsor
+    context-path: /sponsor
 spring:
   application:
     name: eureka-client-ad-sponsor
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate.format_sql: true
-    open-in-view: false
   datasource:
     url: jdbc:mysql://localhost:3306/ad_data?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
@@ -21,7 +14,10 @@ spring:
       max-active: 10
       min-idle: 5
       initial-size: 2
+
 eureka:
   client:
     service-url:
       defaultZone: http://server1:7001/eureka/, http://server2:7002/eureka/, http://server3:7003/eureka/
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
