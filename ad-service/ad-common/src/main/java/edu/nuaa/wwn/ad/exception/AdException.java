@@ -7,7 +7,7 @@ package edu.nuaa.wwn.ad.exception;
  * Date: 2020-08-26
  * Time: 16:01
  */
-public class AdException extends Exception{
+public class AdException extends Exception {
 
     public AdException(String message) {
         super(message);

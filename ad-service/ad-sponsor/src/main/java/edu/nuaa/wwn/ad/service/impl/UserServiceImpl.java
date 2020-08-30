@@ -6,7 +6,7 @@ import edu.nuaa.wwn.ad.dao.UserPOMapper;
 import edu.nuaa.wwn.ad.entity.UserPO;
 import edu.nuaa.wwn.ad.exception.AdException;
 import edu.nuaa.wwn.ad.service.UserService;
-import edu.nuaa.wwn.ad.util.CommonUtils;
+import edu.nuaa.wwn.ad.utils.CommonUtils;
 import edu.nuaa.wwn.ad.vo.CreateUserRequest;
 import edu.nuaa.wwn.ad.vo.CreateUserResponse;
 import lombok.extern.slf4j.Slf4j;

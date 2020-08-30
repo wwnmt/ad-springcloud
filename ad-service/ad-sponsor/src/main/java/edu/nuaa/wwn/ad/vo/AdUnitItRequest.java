@@ -23,7 +23,7 @@ public class AdUnitItRequest {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class UnitIt{
+    public static class UnitIt {
         private Long unitId;
         private String tag;
     }

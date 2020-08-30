@@ -15,10 +15,11 @@ public interface UserService {
 
     /**
      * 创建用户
+     *
      * @param request
      * @return
      * @throws AdException
      */
     CreateUserResponse createUser(CreateUserRequest request)
-        throws AdException;
+            throws AdException;
 }

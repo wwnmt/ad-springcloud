@@ -23,7 +23,7 @@ public class CreativeUnitRequest {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class CreativeUnitItem{
+    public static class CreativeUnitItem {
         private Long creativeId;
         private Long unitId;
     }

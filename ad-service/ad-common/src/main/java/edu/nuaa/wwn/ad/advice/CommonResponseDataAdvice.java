@@ -25,6 +25,7 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
 
     /**
      * 响应是否应该拦截
+     *
      * @param methodParameter
      * @param aClass
      * @return
@@ -49,13 +50,6 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
 
     /**
      * 写入响应之前做的事
-     * @param o
-     * @param methodParameter
-     * @param mediaType
-     * @param aClass
-     * @param serverHttpRequest
-     * @param serverHttpResponse
-     * @return
      */
     @Nullable
     @Override

@@ -26,13 +26,11 @@ import edu.nuaa.wwn.ad.vo.AdUnitRequest;
 import edu.nuaa.wwn.ad.vo.AdUnitResponse;
 import edu.nuaa.wwn.ad.vo.CreativeUnitRequest;
 import edu.nuaa.wwn.ad.vo.CreativeUnitResponse;
-import org.checkerframework.checker.units.qual.C;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -75,16 +73,19 @@ public class AdUnitServiceImpl implements AdUnitService {
     @Override
     public AdUnitResponse createAdUnit(AdUnitRequest request) throws AdException {
 
-        if (!request.createValidate())
+        if (!request.createValidate()) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
+        }
 
         PlanPO oldPlan = planPOMapper.selectByPrimaryKey(request.getPlanId());
-        if (oldPlan == null)
+        if (oldPlan == null) {
             throw new AdException(Constants.ErrorMsg.CAN_NOT_FIND_RECORD);
+        }
 
         UnitPO oldUnit = unitPOMapper.findByPlanIdAndUniName(request.getPlanId(), request.getUnitName());
-        if (oldUnit != null)
+        if (oldUnit != null) {
             throw new AdException(Constants.ErrorMsg.SAME_UNIT_NAME_ERROR);
+        }
 
         UnitPO unitPO = new UnitPO();
         unitPO.setPlanId(oldPlan.getId());
@@ -101,10 +102,11 @@ public class AdUnitServiceImpl implements AdUnitService {
         List<Long> unitIds = request.getUnitKeywords().stream()
                 .map(AdUnitKeywordRequest.UnitKeyword::getUnitId)
                 .collect(Collectors.toList());
-        if (!isRelatedUnitExist(unitIds))
+        if (!isRelatedUnitExist(unitIds)) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
+        }
 
-        List<UnitKeywordPO> unitKeywordPOs  = new ArrayList<>();
+        List<UnitKeywordPO> unitKeywordPOs = new ArrayList<>();
         if (!CollectionUtils.isEmpty(request.getUnitKeywords())) {
             request.getUnitKeywords().forEach(unitKeyword -> {
                 UnitKeywordPO unitKeywordPO = new UnitKeywordPO();
@@ -124,10 +126,11 @@ public class AdUnitServiceImpl implements AdUnitService {
         List<Long> unitIds = request.getIts().stream()
                 .map(AdUnitItRequest.UnitIt::getUnitId)
                 .collect(Collectors.toList());
-        if (!isRelatedUnitExist(unitIds))
+        if (!isRelatedUnitExist(unitIds)) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
+        }
 
-        List<UnitItPO> unitItPOs  = new ArrayList<>();
+        List<UnitItPO> unitItPOs = new ArrayList<>();
         if (!CollectionUtils.isEmpty(request.getIts())) {
             request.getIts().forEach(unitIt -> {
                 UnitItPO unitItPO = new UnitItPO();
@@ -147,10 +150,11 @@ public class AdUnitServiceImpl implements AdUnitService {
         List<Long> unitIds = request.getUnitDistricts().stream()
                 .map(AdUnitDistrictRequest.UnitDistrict::getUnitId)
                 .collect(Collectors.toList());
-        if (!isRelatedUnitExist(unitIds))
+        if (!isRelatedUnitExist(unitIds)) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
+        }
 
-        List<UnitDistrictPO> unitDistrictPOs  = new ArrayList<>();
+        List<UnitDistrictPO> unitDistrictPOs = new ArrayList<>();
         if (!CollectionUtils.isEmpty(request.getUnitDistricts())) {
             request.getUnitDistricts().forEach(unitDistrict -> {
                 UnitDistrictPO unitDistrictPO = new UnitDistrictPO();
@@ -175,8 +179,9 @@ public class AdUnitServiceImpl implements AdUnitService {
         List<Long> creativeIds = request.getUnitItems().stream()
                 .map(CreativeUnitRequest.CreativeUnitItem::getCreativeId)
                 .collect(Collectors.toList());
-        if (!isRelatedUnitExist(unitIds) || !isRelatedCreativeExist(creativeIds))
+        if (!isRelatedUnitExist(unitIds) || !isRelatedCreativeExist(creativeIds)) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
+        }
 
         List<CreativeUnitPO> creativeUnitPOs = new ArrayList<>();
         request.getUnitItems().forEach(creativeUnitItem -> {
@@ -192,15 +197,17 @@ public class AdUnitServiceImpl implements AdUnitService {
     }
 
     private boolean isRelatedUnitExist(List<Long> unitIds) {
-        if (CollectionUtils.isEmpty(unitIds))
+        if (CollectionUtils.isEmpty(unitIds)) {
             return false;
+        }
         return unitPOMapper.findAllByIds(unitIds).size() ==
                 new HashSet<>(unitIds).size();
     }
 
     private boolean isRelatedCreativeExist(List<Long> creativeIds) {
-        if (CollectionUtils.isEmpty(creativeIds))
+        if (CollectionUtils.isEmpty(creativeIds)) {
             return false;
+        }
         return creativePOMapper.findAllByIds(creativeIds).size() ==
                 new HashSet<>(creativeIds).size();
     }

@@ -8,11 +8,10 @@ import edu.nuaa.wwn.ad.entity.PlanPO;
 import edu.nuaa.wwn.ad.entity.UserPO;
 import edu.nuaa.wwn.ad.exception.AdException;
 import edu.nuaa.wwn.ad.service.AdPlanService;
-import edu.nuaa.wwn.ad.util.CommonUtils;
+import edu.nuaa.wwn.ad.utils.CommonUtils;
 import edu.nuaa.wwn.ad.vo.AdPlanGetRequest;
 import edu.nuaa.wwn.ad.vo.AdPlanRequest;
 import edu.nuaa.wwn.ad.vo.AdPlanResponse;
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,12 +46,14 @@ public class AdPlanServiceImpl implements AdPlanService {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
         }
         UserPO user = userPOMapper.selectByPrimaryKey(request.getUserId());
-        if (user == null)
+        if (user == null) {
             throw new AdException(Constants.ErrorMsg.CAN_NOT_FIND_RECORD);
+        }
 
         PlanPO oldPlan = planPOMapper.findByUserIdAndPlanName(request.getUserId(), request.getPlanName());
-        if (oldPlan != null)
+        if (oldPlan != null) {
             throw new AdException(Constants.ErrorMsg.SAME_PLAN_NAME_ERROR);
+        }
 
         PlanPO planPO = new PlanPO();
         planPO.setUserId(request.getUserId());
@@ -74,8 +75,9 @@ public class AdPlanServiceImpl implements AdPlanService {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
         }
         List<PlanPO> planList = planPOMapper.findAllByIdsAndUserId(request.getUserId(), request.getIds());
-        if (planList == null || planList.size() == 0)
+        if (planList == null || planList.size() == 0) {
             throw new AdException(Constants.ErrorMsg.CAN_NOT_FIND_RECORD);
+        }
 
         return planList;
     }
@@ -84,17 +86,22 @@ public class AdPlanServiceImpl implements AdPlanService {
     @Transactional
     public AdPlanResponse updateAdPlan(AdPlanRequest request) throws AdException {
 
-        if (!request.updateValidate())
+        if (!request.updateValidate()) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
+        }
         PlanPO oldPlan = planPOMapper.findByUserIdAndId(request.getUserId(), request.getId());
-        if (oldPlan == null)
+        if (oldPlan == null) {
             throw new AdException(Constants.ErrorMsg.CAN_NOT_FIND_RECORD);
-        if (request.getPlanName() != null)
+        }
+        if (request.getPlanName() != null) {
             oldPlan.setPlanName(request.getPlanName());
-        if (request.getStartDate() != null)
+        }
+        if (request.getStartDate() != null) {
             oldPlan.setStartDate(CommonUtils.String2Date(request.getStartDate()));
-        if (request.getEndDate() != null)
+        }
+        if (request.getEndDate() != null) {
             oldPlan.setEndDate(CommonUtils.String2Date(request.getEndDate()));
+        }
         oldPlan.setUpdateTime(new Date());
         planPOMapper.updateByPrimaryKeySelective(oldPlan);
         return new AdPlanResponse(oldPlan.getId(), oldPlan.getPlanName());
@@ -104,11 +111,13 @@ public class AdPlanServiceImpl implements AdPlanService {
     @Transactional
     public void deleteAdPlan(AdPlanRequest request) throws AdException {
 
-        if (!request.deleteValidate())
+        if (!request.deleteValidate()) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
+        }
         PlanPO oldPlan = planPOMapper.findByUserIdAndId(request.getUserId(), request.getId());
-        if (oldPlan == null)
+        if (oldPlan == null) {
             throw new AdException(Constants.ErrorMsg.CAN_NOT_FIND_RECORD);
+        }
         oldPlan.setPlanStatus((byte) CommonStatus.INVALID.getStatus());
         oldPlan.setUpdateTime(new Date());
         planPOMapper.updateByPrimaryKeySelective(oldPlan);

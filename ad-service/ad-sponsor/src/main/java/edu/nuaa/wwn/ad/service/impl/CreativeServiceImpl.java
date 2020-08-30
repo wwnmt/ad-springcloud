@@ -28,8 +28,9 @@ public class CreativeServiceImpl implements CreativeService {
     @Override
     public CreativeResponse createAdCreative(CreativeRequest request) throws AdException {
 
-        if (!request.validate())
+        if (!request.validate()) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
+        }
 
         CreativePO creativePO = request.convertToEntity();
         long id = creativePOMapper.insertSelective(creativePO);

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 public class PreRequestFilter extends ZuulFilter {
     /**
      * Filter类型 pre routing post error
+     *
      * @return Filter类型
      */
     @Override
@@ -27,6 +28,7 @@ public class PreRequestFilter extends ZuulFilter {
 
     /**
      * 过滤器优先级
+     *
      * @return 优先级
      */
     @Override
@@ -36,6 +38,7 @@ public class PreRequestFilter extends ZuulFilter {
 
     /**
      * 是否执行过滤器
+     *
      * @return true false
      */
     @Override
@@ -45,6 +48,7 @@ public class PreRequestFilter extends ZuulFilter {
 
     /**
      * 过滤器执行的内容
+     *
      * @return
      * @throws ZuulException
      */

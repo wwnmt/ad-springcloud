@@ -11,7 +11,6 @@ import edu.nuaa.wwn.ad.vo.AdUnitKeywordRequest;
 import edu.nuaa.wwn.ad.vo.AdUnitKeywordResponse;
 import edu.nuaa.wwn.ad.vo.AdUnitRequest;
 import edu.nuaa.wwn.ad.vo.AdUnitResponse;
-import edu.nuaa.wwn.ad.vo.CreateUserRequest;
 import edu.nuaa.wwn.ad.vo.CreativeUnitRequest;
 import edu.nuaa.wwn.ad.vo.CreativeUnitResponse;
 import lombok.extern.slf4j.Slf4j;
