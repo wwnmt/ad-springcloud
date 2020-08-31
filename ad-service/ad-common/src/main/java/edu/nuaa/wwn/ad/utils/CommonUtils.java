@@ -2,11 +2,15 @@ package edu.nuaa.wwn.ad.utils;
 
 
 import edu.nuaa.wwn.ad.exception.AdException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -17,6 +21,7 @@ import java.util.function.Supplier;
  * Date: 2020-08-26
  * Time: 18:09
  */
+@Slf4j
 public class CommonUtils {
 
     private static String[] patterns = {
@@ -48,5 +53,22 @@ public class CommonUtils {
         }
         result.deleteCharAt(result.length() - 1);
         return result.toString();
+    }
+
+    //Mon Aug 31 20:00:00 CST 2020
+    public static Date parseStringDate(String dateString) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat(
+                    "EEE MMM dd HH:mm:ss zzz yyyy",
+                    Locale.US
+            );
+            return DateUtils.addHours(
+                    dateFormat.parse(dateString),
+                    -8
+            );
+        } catch (ParseException e) {
+            log.error("parseString Date error: {}", dateString);
+            return null;
+        }
     }
 }

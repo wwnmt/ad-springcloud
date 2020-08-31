@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class DataTable implements ApplicationContextAware, PriorityOrdered {
 
-    private static final Map<Class, Object> dataTableMap = new ConcurrentHashMap<>();
+    private static final Map<Class<?>, Object> dataTableMap = new ConcurrentHashMap<>();
     private static ApplicationContext applicationContext;
 
     @SuppressWarnings("all")

@@ -85,22 +85,25 @@
             <version>4.0</version>
         </dependency>
         <!-- binlog 监听与解析: https://github.com/shyiko/mysql-binlog-connector-java -->
+        <!-- https://mvnrepository.com/artifact/com.github.shyiko/mysql-binlog-connector-java -->
         <dependency>
             <groupId>com.github.shyiko</groupId>
             <artifactId>mysql-binlog-connector-java</artifactId>
-            <version>0.13.0</version>
+            <version>0.21.0</version>
         </dependency>
+
         <!-- 解析配置文件中的配置 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
-        <!--kafka 依赖-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-            <version>2.1.5.RELEASE</version>
+            <version>2.5.5.RELEASE</version>
         </dependency>
+
     </dependencies>
 
 </project>
