@@ -1,6 +1,7 @@
 package edu.nuaa.wwn.ad.mysql;
 
 import com.github.shyiko.mysql.binlog.BinaryLogClient;
+import edu.nuaa.wwn.ad.mysql.binlog.BinlogConfig;
 import edu.nuaa.wwn.ad.mysql.listener.AggregationListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

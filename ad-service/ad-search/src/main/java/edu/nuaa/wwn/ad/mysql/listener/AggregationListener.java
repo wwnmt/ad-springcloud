@@ -9,7 +9,7 @@ import com.github.shyiko.mysql.binlog.event.TableMapEventData;
 import com.github.shyiko.mysql.binlog.event.UpdateRowsEventData;
 import com.github.shyiko.mysql.binlog.event.WriteRowsEventData;
 import edu.nuaa.wwn.ad.mysql.TemplateHolder;
-import edu.nuaa.wwn.ad.mysql.dto.BinlogRowData;
+import edu.nuaa.wwn.ad.mysql.binlog.BinlogRowData;
 import edu.nuaa.wwn.ad.mysql.dto.TableTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package edu.nuaa.wwn.ad.mysql.listener;
 
-import edu.nuaa.wwn.ad.mysql.dto.BinlogRowData;
+import edu.nuaa.wwn.ad.mysql.binlog.BinlogRowData;
 
 /**
  * Created with IntelliJ IDEA.

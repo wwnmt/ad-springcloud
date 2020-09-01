@@ -1,4 +1,4 @@
-package edu.nuaa.wwn.ad.mysql.dto;
+package edu.nuaa.wwn.ad.mysql.binlog;
 
 import edu.nuaa.wwn.ad.mysql.constant.OpType;
 import lombok.AllArgsConstructor;

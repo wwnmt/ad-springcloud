@@ -8,6 +8,7 @@ import edu.nuaa.wwn.ad.dump.table.AdUnitItTable;
 import edu.nuaa.wwn.ad.dump.table.AdUnitKeywordTable;
 import edu.nuaa.wwn.ad.dump.table.AdUnitTable;
 import edu.nuaa.wwn.ad.dump.table.CreativeTable;
+import edu.nuaa.wwn.ad.dump.table.CreativeUnitTable;
 import edu.nuaa.wwn.ad.handler.AdLevelDataHandler;
 import edu.nuaa.wwn.ad.mysql.constant.OpType;
 import lombok.extern.slf4j.Slf4j;
@@ -57,6 +58,13 @@ public class IndexFileLoader {
         adUnitStrings.forEach(u -> AdLevelDataHandler.handleLevel3(
                 JSON.parseObject(u, AdUnitTable.class), OpType.ADD
         ));
+        //CREATIVE_UNIT
+        List<String> creativeUnitStrings = loadDumpData(
+                String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_CREATIVE_UNIT)
+        );
+        creativeUnitStrings.forEach(c -> AdLevelDataHandler.handleLevel3(
+                JSON.parseObject(c, CreativeUnitTable.class), OpType.ADD
+        ));
         //AD_UNIT_DISTRICT
         List<String> adUnitDistrictStrings = loadDumpData(
                 String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT_DISTRICT)
@@ -78,11 +86,12 @@ public class IndexFileLoader {
         adUnitKeywordStrings.forEach(k -> AdLevelDataHandler.handleLevel4(
                 JSON.parseObject(k, AdUnitKeywordTable.class), OpType.ADD
         ));
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
     }
 
     private List<String> loadDumpData(String fileName) {
         try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
+            log.info("load dump file: {}", fileName);
             return br.lines().collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());

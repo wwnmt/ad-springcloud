@@ -11,7 +11,7 @@ import edu.nuaa.wwn.ad.dump.table.CreativeUnitTable;
 import edu.nuaa.wwn.ad.handler.AdLevelDataHandler;
 import edu.nuaa.wwn.ad.index.DateLevel;
 import edu.nuaa.wwn.ad.mysql.constant.Constant;
-import edu.nuaa.wwn.ad.mysql.dto.MysqlRowData;
+import edu.nuaa.wwn.ad.mysql.binlog.MysqlRowData;
 import edu.nuaa.wwn.ad.utils.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

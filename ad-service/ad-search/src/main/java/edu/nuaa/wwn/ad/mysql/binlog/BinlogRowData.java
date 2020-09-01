@@ -1,6 +1,7 @@
-package edu.nuaa.wwn.ad.mysql.dto;
+package edu.nuaa.wwn.ad.mysql.binlog;
 
 import com.github.shyiko.mysql.binlog.event.EventType;
+import edu.nuaa.wwn.ad.mysql.dto.TableTemplate;
 import lombok.Data;
 
 import java.util.List;

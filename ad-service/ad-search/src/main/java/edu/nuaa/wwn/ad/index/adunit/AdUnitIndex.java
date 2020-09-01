@@ -2,9 +2,16 @@ package edu.nuaa.wwn.ad.index.adunit;
 
 import edu.nuaa.wwn.ad.index.IndexAware;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -22,6 +29,33 @@ public class AdUnitIndex implements IndexAware<Long, AdUnitObject> {
 
     static {
         objectMap = new ConcurrentHashMap<>();
+    }
+
+    public Set<Long> match(Integer positionType) {
+        Set<Long> adUnitIds = new HashSet<>();
+        objectMap.forEach((k, v) -> {
+            if (AdUnitObject.isAdSlotTypeOk(positionType, v.getPositionType())) {
+                adUnitIds.add(k);
+            }
+        });
+        return adUnitIds;
+    }
+
+    public List<AdUnitObject> fetch(Collection<Long> adUnitIds) {
+        if (CollectionUtils.isEmpty(adUnitIds)) {
+            return Collections.emptyList();
+        }
+
+        List<AdUnitObject> result = new ArrayList<>();
+        adUnitIds.forEach(id -> {
+            AdUnitObject object = get(id);
+            if (object == null) {
+                log.error("AdUnitObject not found: {}", id);
+                return;
+            }
+            result.add(object);
+        });
+        return result;
     }
 
     @Override
