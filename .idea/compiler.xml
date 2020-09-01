@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ad-eureka" />
+        <module name="ad-dashboard" />
         <module name="ad-gateway" />
         <module name="ad-search" />
         <module name="ad-common" />
@@ -21,6 +22,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ad-common" options="-parameters" />
+      <module name="ad-dashboard" options="-parameters" />
       <module name="ad-eureka" options="-parameters" />
       <module name="ad-gateway" options="-parameters" />
       <module name="ad-search" options="-parameters" />
