@@ -1,6 +1,7 @@
 package edu.nuaa.wwn.ad.sender;
 
-import edu.nuaa.wwn.ad.mysql.binlog.MysqlRowData;
+
+import edu.nuaa.wwn.ad.binlog.MysqlRowData;
 
 /**
  * Created with IntelliJ IDEA.

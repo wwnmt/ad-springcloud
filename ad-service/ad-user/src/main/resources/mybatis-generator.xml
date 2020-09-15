@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ad_data?serverTimezone=UTC"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="edu.nuaa.wwn.ad.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapping"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="edu.nuaa.wwn.ad.dao"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+<!--                <table tableName="ad_user_t" domainObjectName="UserPO"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="true"-->
+<!--                       enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"></table>-->
+        <!--        <table tableName="ad_plan" domainObjectName="PlanPO"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"></table>-->
+        <!--        <table tableName="ad_unit" domainObjectName="UnitPO"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"></table>-->
+        <!--        <table tableName="ad_unit_keyword" domainObjectName="UnitKeywordPO"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"></table>-->
+        <!--        <table tableName="ad_unit_it" domainObjectName="UnitItPO"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"></table>-->
+        <!--        <table tableName="ad_unit_district" domainObjectName="UnitDistrictPO"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"></table>-->
+        <!--        <table tableName="ad_creative" domainObjectName="CreativePO"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"></table>-->
+        <!--        <table tableName="creative_unit" domainObjectName="CreativeUnitPO"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"></table>-->
+    </context>
+</generatorConfiguration>

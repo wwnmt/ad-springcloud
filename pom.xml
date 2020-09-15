@@ -15,6 +15,7 @@
         <module>ad-eureka</module>
         <module>ad-gateway</module>
         <module>ad-service</module>
+        <module>ad-auth</module>
     </modules>
 
     <parent>

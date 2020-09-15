@@ -66,6 +66,11 @@
             <version>8.0.12</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>edu.nuaa.wwn.ad</groupId>
+            <artifactId>ad-binlog-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- 通用模块 -->
         <dependency>
             <groupId>edu.nuaa.wwn.ad</groupId>

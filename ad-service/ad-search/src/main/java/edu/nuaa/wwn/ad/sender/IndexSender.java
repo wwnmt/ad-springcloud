@@ -1,6 +1,8 @@
 package edu.nuaa.wwn.ad.sender;
 
 import com.alibaba.fastjson.JSON;
+import edu.nuaa.wwn.ad.binlog.MysqlRowData;
+import edu.nuaa.wwn.ad.constant.Constant;
 import edu.nuaa.wwn.ad.dump.table.AdPlanTable;
 import edu.nuaa.wwn.ad.dump.table.AdUnitDistrictTable;
 import edu.nuaa.wwn.ad.dump.table.AdUnitItTable;
@@ -9,9 +11,7 @@ import edu.nuaa.wwn.ad.dump.table.AdUnitTable;
 import edu.nuaa.wwn.ad.dump.table.CreativeTable;
 import edu.nuaa.wwn.ad.dump.table.CreativeUnitTable;
 import edu.nuaa.wwn.ad.handler.AdLevelDataHandler;
-import edu.nuaa.wwn.ad.index.DateLevel;
-import edu.nuaa.wwn.ad.mysql.constant.Constant;
-import edu.nuaa.wwn.ad.mysql.binlog.MysqlRowData;
+import edu.nuaa.wwn.ad.index.DataLevel;
 import edu.nuaa.wwn.ad.utils.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -24,35 +24,38 @@ import java.util.Map;
  * Created with IntelliJ IDEA.
  * Description:
  * User: WeinanWu
- * Date: 2020-08-31
- * Time: 15:00
+ * Date: 2020-09-15
+ * Time: 10:53
  */
+@Component
 @Slf4j
-@Component("indexSender")
 public class IndexSender implements ISender{
+
     @Override
     public void send(MysqlRowData rowData) {
+
         String level = rowData.getLevel();
 
-        if (DateLevel.LEVEL2.getLevel().equals(level)) {
-            level2RowData(rowData);
-        } else if (DateLevel.LEVEL3.getLevel().equals(level)) {
-            level3RowData(rowData);
-        } else if (DateLevel.LEVEL4.getLevel().equals(level)) {
-            level4RowData(rowData);
+        if (DataLevel.LEVEL2.getLevel().equals(level)) {
+            Level2RowData(rowData);
+        } else if (DataLevel.LEVEL3.getLevel().equals(level)) {
+            Level3RowData(rowData);
+        } else if (DataLevel.LEVEL4.getLevel().equals(level)) {
+            Level4RowData(rowData);
         } else {
-            log.error("MysqlRowData Error： {}", JSON.toJSONString(rowData));
+            log.error("MysqlRowData ERROR: {}", JSON.toJSONString(rowData));
         }
     }
 
-    private void level2RowData(MysqlRowData rowData) {
+    private void Level2RowData(MysqlRowData rowData) {
 
         if (rowData.getTableName().equals(
-                Constant.AD_PLAN_TABLE_INFO.TABLE_NAME
-        )) {
+                Constant.AD_PLAN_TABLE_INFO.TABLE_NAME)) {
             List<AdPlanTable> planTables = new ArrayList<>();
 
-            for (Map<String, String> fieldValueMap : rowData.getFieldValueMap()) {
+            for (Map<String, String> fieldValueMap :
+                    rowData.getFieldValueMap()) {
+
                 AdPlanTable planTable = new AdPlanTable();
 
                 fieldValueMap.forEach((k, v) -> {
@@ -67,25 +70,34 @@ public class IndexSender implements ISender{
                             planTable.setPlanStatus(Byte.valueOf(v));
                             break;
                         case Constant.AD_PLAN_TABLE_INFO.COLUMN_START_DATE:
-                            planTable.setStartDate(CommonUtils.parseStringDate(v));
+                            planTable.setStartDate(
+                                    CommonUtils.parseStringDate(v)
+                            );
                             break;
                         case Constant.AD_PLAN_TABLE_INFO.COLUMN_END_DATE:
-                            planTable.setEndDate(CommonUtils.parseStringDate(v));
+                            planTable.setEndDate(
+                                    CommonUtils.parseStringDate(v)
+                            );
                             break;
                     }
                 });
+
                 planTables.add(planTable);
             }
-            planTables.forEach(p -> AdLevelDataHandler.handleLevel2(p, rowData.getOpType()));
+
+            planTables.forEach(p ->
+                                       AdLevelDataHandler.handleLevel2(p, rowData.getOpType()));
         } else if (rowData.getTableName().equals(
                 Constant.AD_CREATIVE_TABLE_INFO.TABLE_NAME
         )) {
             List<CreativeTable> creativeTables = new ArrayList<>();
 
-            for (Map<String, String> fieldValueMap : rowData.getFieldValueMap()) {
+            for (Map<String, String> fieldValeMap :
+                    rowData.getFieldValueMap()) {
+
                 CreativeTable creativeTable = new CreativeTable();
 
-                fieldValueMap.forEach((k, v) -> {
+                fieldValeMap.forEach((k, v) -> {
                     switch (k) {
                         case Constant.AD_CREATIVE_TABLE_INFO.COLUMN_ID:
                             creativeTable.setAdId(Long.valueOf(v));
@@ -114,11 +126,12 @@ public class IndexSender implements ISender{
                 creativeTables.add(creativeTable);
             }
 
-            creativeTables.forEach(c -> AdLevelDataHandler.handleLevel2(c, rowData.getOpType()));
+            creativeTables.forEach(c ->
+                                           AdLevelDataHandler.handleLevel2(c, rowData.getOpType()));
         }
     }
 
-    private void level3RowData(MysqlRowData rowData) {
+    private void Level3RowData(MysqlRowData rowData) {
 
         if (rowData.getTableName().equals(
                 Constant.AD_UNIT_TABLE_INFO.TABLE_NAME)) {
@@ -182,7 +195,7 @@ public class IndexSender implements ISender{
         }
     }
 
-    private void level4RowData(MysqlRowData rowData) {
+    private void Level4RowData(MysqlRowData rowData) {
 
         switch (rowData.getTableName()) {
 

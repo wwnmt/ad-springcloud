@@ -1,6 +1,7 @@
 package edu.nuaa.wwn.ad.handler;
 
 import com.alibaba.fastjson.JSON;
+import edu.nuaa.wwn.ad.constant.OpType;
 import edu.nuaa.wwn.ad.dump.table.AdPlanTable;
 import edu.nuaa.wwn.ad.dump.table.AdUnitDistrictTable;
 import edu.nuaa.wwn.ad.dump.table.AdUnitItTable;
@@ -21,7 +22,6 @@ import edu.nuaa.wwn.ad.index.creativeunit.CreativeUnitObject;
 import edu.nuaa.wwn.ad.index.district.UnitDistrictIndex;
 import edu.nuaa.wwn.ad.index.keyword.UnitKeywordIndex;
 import edu.nuaa.wwn.ad.index.keyword.UnitKeywordObject;
-import edu.nuaa.wwn.ad.mysql.constant.OpType;
 import edu.nuaa.wwn.ad.utils.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 

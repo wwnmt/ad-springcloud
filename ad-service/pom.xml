@@ -18,6 +18,9 @@
         <module>ad-sponsor</module>
         <module>ad-search</module>
         <module>ad-dashboard</module>
+        <module>ad-user</module>
+        <module>ad-binlog-common</module>
+        <module>ad-binlog-kafka</module>
     </modules>
 
 </project>

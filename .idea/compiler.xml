@@ -7,10 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ad-eureka" />
         <module name="ad-dashboard" />
         <module name="ad-gateway" />
         <module name="ad-search" />
+        <module name="ad-user" />
+        <module name="ad-eureka" />
+        <module name="ad-binlog-common" />
+        <module name="ad-binlog-kafka" />
+        <module name="ad-auth" />
         <module name="ad-common" />
         <module name="ad-sponsor" />
       </profile>
@@ -21,6 +25,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ad-auth" options="-parameters" />
+      <module name="ad-binlog-common" options="-parameters" />
+      <module name="ad-binlog-kafka" options="-parameters" />
       <module name="ad-common" options="-parameters" />
       <module name="ad-dashboard" options="-parameters" />
       <module name="ad-eureka" options="-parameters" />
@@ -28,6 +35,7 @@
       <module name="ad-search" options="-parameters" />
       <module name="ad-service" options="-parameters" />
       <module name="ad-sponsor" options="-parameters" />
+      <module name="ad-user" options="-parameters" />
     </option>
   </component>
 </project>
